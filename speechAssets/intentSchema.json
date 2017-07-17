@@ -1,0 +1,23 @@
+{
+  "intents": [
+    {
+      "intent": "GenerateIntent",
+      "slots": [{
+        "name": "GeneratorType",
+        "type": "GENERATOR_TYPES"
+        }]
+    },
+    {
+      "intent": "GeneratePlaceIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}
