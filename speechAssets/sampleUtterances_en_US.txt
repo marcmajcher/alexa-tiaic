@@ -1,3 +1,2 @@
-ListingIntent
 ListingIntent {Theater}
 ListingIntent for {Theater}

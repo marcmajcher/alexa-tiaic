@@ -1,5 +1,5 @@
 THEATERS
-COLDTOWNE THEATER
-THE NEW MOVEMENT THEATER
-THE INSTITUTION THEATER
-THE HIDEOUT THEATER
+coldtowne theater
+the new movement theater
+the institution theater
+the hideout theater
