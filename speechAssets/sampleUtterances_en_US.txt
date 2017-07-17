@@ -1,35 +1,3 @@
-GenerateIntent {GeneratorType}
-GenerateIntent for a {GeneratorType}
-GenerateIntent for a {GeneratorType} name
-GenerateIntent for a random {GeneratorType}
-GenerateIntent for a random {GeneratorType} name
-GenerateIntent for the name of a {GeneratorType}
-GenerateIntent for the name of a random {GeneratorType}
-GenerateIntent give me a {GeneratorType}
-GenerateIntent give me a {GeneratorType} name
-GenerateIntent give me a random {GeneratorType}
-GenerateIntent give me a random {GeneratorType} name
-GenerateIntent give me the name of a {GeneratorType}
-GenerateIntent give me the name of a random {GeneratorType}
-GenerateIntent tell me a {GeneratorType} name
-GenerateIntent tell me a random {GeneratorType} name
-GenerateIntent tell me the name of a {GeneratorType}
-GenerateIntent tell me the name of a random {GeneratorType}
-
-GeneratePlaceIntent {GeneratorType}
-GeneratePlaceIntent for a {GeneratorType}
-GeneratePlaceIntent for a {GeneratorType} name
-GeneratePlaceIntent for a random {GeneratorType}
-GeneratePlaceIntent for a random {GeneratorType} name
-GeneratePlaceIntent for the name of a {GeneratorType}
-GeneratePlaceIntent for the name of a random {GeneratorType}
-GeneratePlaceIntent give me a {GeneratorType}
-GeneratePlaceIntent give me a {GeneratorType} name
-GeneratePlaceIntent give me a random {GeneratorType}
-GeneratePlaceIntent give me a random {GeneratorType} name
-GeneratePlaceIntent give me the name of a {GeneratorType}
-GeneratePlaceIntent give me the name of a random {GeneratorType}
-GeneratePlaceIntent tell me a {GeneratorType} name
-GeneratePlaceIntent tell me a random {GeneratorType} name
-GeneratePlaceIntent tell me the name of a {GeneratorType}
-GeneratePlaceIntent tell me the name of a random {GeneratorType}
+ListingIntent
+ListingIntent {Theater}
+ListingIntent for {Theater}

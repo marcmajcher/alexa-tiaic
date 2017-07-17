@@ -1,14 +1,11 @@
 {
   "intents": [
     {
-      "intent": "GenerateIntent",
+      "intent": "ListingIntent",
       "slots": [{
-        "name": "GeneratorType",
-        "type": "GENERATOR_TYPES"
+        "name": "Theater",
+        "type": "THEATERS"
         }]
-    },
-    {
-      "intent": "GeneratePlaceIntent"
     },
     {
       "intent": "AMAZON.HelpIntent"

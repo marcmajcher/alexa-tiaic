@@ -1,25 +1,5 @@
-GENERATOR_TYPES
-place
-region
-treasure
-
-DETAIL_TYPES
-ability
-activity
-adjective
-age
-alignment
-aspect
-condition
-disposition
-element
-feature
-magic type
-number appearing
-oddity
-orientation
-ruination
-size
-tag
-terrain
-visibility
+THEATERS
+COLDTOWNE THEATER
+THE NEW MOVEMENT THEATER
+THE INSTITUTION THEATER
+THE HIDEOUT THEATER

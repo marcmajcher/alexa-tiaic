@@ -3,20 +3,20 @@
 /* eslint-env node */
 
 const Alexa = require('alexa-sdk');
-const generators = require('./generator');
+const listings = require('./listings');
 
-const APP_ID = 'GizmetPerilousWilds'; // TODO replace with your app ID (OPTIONAL).
-const SKILL_NAME = 'The Perilous Wilds';
-const HELP_MESSAGE = 'You can ask me to generate a place, region, or treasure, or, you can say exit ... What can I do for you?';
-const HELP_REPROMPT = 'Would you like me to generate a place, region, or treasure?';
-const STOP_MESSAGE = 'Venture forth!';
-const GENERATOR_NOT_FOUND_MESSAGE = 'I don\'t know how to do that. Please ask for a place, region, or treasure.';
-const GENERATOR_NOT_FOUND_REPROMPT = 'Would you like me to generate a place, region, or treasure?';
-const generatorMessages = {
-  place: 'This place is called',
-  region: 'This region is called',
-  treasure: 'You found: ',
-};
+const APP_ID = 'GizmetTonightInAIC'; // TODO replace with your app ID (OPTIONAL).
+const SKILL_NAME = 'Tonight in the AIC';
+const HELP_MESSAGE = 'You can ask me for all listings, listings for a specific theater, or, you can say exit ... What can I do for you?';
+const HELP_REPROMPT = 'Would you like me to give you listings for a specific theater, or all listings?';
+const STOP_MESSAGE = 'Good bye.';
+const LISTING_NOT_FOUND_MESSAGE = 'I don\'t know how to do that. Please ask for all listings, or listings for a specific theater.';
+const LISTING_NOT_FOUND_REPROMPT = 'Would you like me to give you listings for a specific theater, or all listings?';
+// const generatorMessages = {
+//   place: 'This place is called',
+//   region: 'This region is called',
+//   treasure: 'You found: ',
+// };
 
 const handlers = {
   LaunchRequest: function LaunchRequest() {
@@ -26,23 +26,23 @@ const handlers = {
     this.emit(':tell', STOP_MESSAGE);
   },
   GeneratePlaceIntent: function GeneratePlaceIntent() {
-    const generatedResponse = generators.place.generate();
-    const speechOutput = `${generatorMessages.place} ${generatedResponse}`;
-    this.emit(':tellWithCard', speechOutput, SKILL_NAME, generatedResponse);
+    const response = listings.all();
+    const speechOutput = `${response.test}`;
+    this.emit(':tellWithCard', speechOutput, SKILL_NAME, response.test);
   },
   GenerateIntent: function GenerateIntent() {
-    const generatorTypeSlot = this.event.request.intent.slots.GeneratorType;
-    if (generatorTypeSlot && generatorTypeSlot.value) {
-      const generatorType = generatorTypeSlot.value.toLowerCase();
+    const theaterName = this.event.request.intent.slots.Theater;
+    if (theaterName && theaterName.value) {
+      const theater = theaterName.value.toLowerCase();
 
-      if (generatorType in generators) {
-        const generatedResponse = generators[generatorType].generate();
-        const speechOutput = `${generatorMessages[generatorType]} ${generatedResponse}`;
-        this.emit(':tellWithCard', speechOutput, SKILL_NAME, generatedResponse);
+      if (theater in listings) {
+        const listingResponse = listings[theater]();
+        const speechOutput = `${listingResponse}`;
+        this.emit(':tellWithCard', speechOutput, SKILL_NAME, listingResponse);
       }
       else {
         // incorrect request type
-        this.emit(':ask', GENERATOR_NOT_FOUND_MESSAGE, GENERATOR_NOT_FOUND_REPROMPT);
+        this.emit(':ask', LISTING_NOT_FOUND_MESSAGE, LISTING_NOT_FOUND_REPROMPT);
       }
     }
     else {
