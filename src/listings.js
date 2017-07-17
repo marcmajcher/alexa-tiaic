@@ -40,7 +40,7 @@ exports.speech = (listings, venue) => {
         output += `\n${e}: ${listings.entries[e]}`;
       }
       else {
-        output += `\n${venue}:\n${venueToSpeech(listings.entries[e])}`;
+        output += `\n${e}:\n${venueToSpeech(listings.entries[e])}`;
       }
     });
   }
