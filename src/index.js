@@ -25,32 +25,26 @@ const handlers = {
   SessionEndedRequest: function SessionEndedRequest() {
     this.emit(':tell', STOP_MESSAGE);
   },
-  // GeneratePlaceIntent: function GeneratePlaceIntent() {
-  //   const response = listings.all();
-  //   const speechOutput = `${response.test}`;
-  //   this.emit(':tellWithCard', speechOutput, SKILL_NAME, response.test);
-  // },
   ListingIntent: function GenerateIntent() {
-    const theaterName = this.event.request.intent.slots.Theater;
-    if (theaterName && theaterName.value) {
-      const theater = theaterName.value.toLowerCase();
-      if (theater in listings) {
-        listings[theater]().then((listingResponse) => {
-          const speechOutput = `${listingResponse}`;
-          this.emit(':tellWithCard', speechOutput, SKILL_NAME, listingResponse);
+    const theater = this.event.request.intent.slots.Theater;
+    if (theater && theater.value) {
+      listings.get()
+        .then((listingResponse) => {
+          const theaterName = theater.value.toUpperCase();
+          const speechOutput = listings.speech(listingResponse, theaterName);
+          this.emit(':tellWithCard', speechOutput, SKILL_NAME, speechOutput);
+        })
+        .catch((error) => {
+          console.error(error);
         });
-      }
-      else {
-        // incorrect request type
-        this.emit(':ask', LISTING_NOT_FOUND_MESSAGE, LISTING_NOT_FOUND_REPROMPT);
-      }
     }
+    // else {
+    //   // incorrect request type
+    //   this.emit(':ask', LISTING_NOT_FOUND_MESSAGE, LISTING_NOT_FOUND_REPROMPT);
+    // }
     else {
       this.emit('LaunchRequest');
     }
-  },
-  Unhandled: function UNhandled() {
-    this.emit(':ask', HELP_MESSAGE, HELP_MESSAGE);
   },
   'AMAZON.HelpIntent': function HelpIntent() {
     const speechOutput = HELP_MESSAGE;
