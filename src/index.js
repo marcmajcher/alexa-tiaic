@@ -25,20 +25,20 @@ const handlers = {
   SessionEndedRequest: function SessionEndedRequest() {
     this.emit(':tell', STOP_MESSAGE);
   },
-  GeneratePlaceIntent: function GeneratePlaceIntent() {
-    const response = listings.all();
-    const speechOutput = `${response.test}`;
-    this.emit(':tellWithCard', speechOutput, SKILL_NAME, response.test);
-  },
-  GenerateIntent: function GenerateIntent() {
+  // GeneratePlaceIntent: function GeneratePlaceIntent() {
+  //   const response = listings.all();
+  //   const speechOutput = `${response.test}`;
+  //   this.emit(':tellWithCard', speechOutput, SKILL_NAME, response.test);
+  // },
+  ListingIntent: function GenerateIntent() {
     const theaterName = this.event.request.intent.slots.Theater;
     if (theaterName && theaterName.value) {
       const theater = theaterName.value.toLowerCase();
-
       if (theater in listings) {
-        const listingResponse = listings[theater]();
-        const speechOutput = `${listingResponse}`;
-        this.emit(':tellWithCard', speechOutput, SKILL_NAME, listingResponse);
+        listings[theater]().then((listingResponse) => {
+          const speechOutput = `${listingResponse}`;
+          this.emit(':tellWithCard', speechOutput, SKILL_NAME, listingResponse);
+        });
       }
       else {
         // incorrect request type
@@ -48,6 +48,9 @@ const handlers = {
     else {
       this.emit('LaunchRequest');
     }
+  },
+  Unhandled: function UNhandled() {
+    this.emit(':ask', HELP_MESSAGE, HELP_MESSAGE);
   },
   'AMAZON.HelpIntent': function HelpIntent() {
     const speechOutput = HELP_MESSAGE;
