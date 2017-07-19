@@ -19,6 +19,9 @@ exports.get = () => new Promise((resolve, reject) => {
 const venueToSpeech = (entry) => {
   let output = '';
   entry.forEach((e) => {
+    if (typeof e.price === 'undefined') {
+      e.price = 'no price listed';
+    }
     let price = e.price.replace(/\$/, '');
     if (!isNaN(price)) {
       price += ' dollars';
@@ -34,7 +37,7 @@ exports.speech = (listings, venue) => {
   if (venue in listings.entries) {
     output += `\n${venue}:\n${venueToSpeech(listings.entries[venue])}`;
   }
-  else {
+  else if (venue.match(/^all/i)){
     Object.keys(listings.entries).forEach((e) => {
       if (e.match(/^FACT /)) {
         output += `\n${e}: ${listings.entries[e]}`;
@@ -43,6 +46,9 @@ exports.speech = (listings, venue) => {
         output += `\n${e}:\n${venueToSpeech(listings.entries[e])}`;
       }
     });
+  }
+  else {
+    output = `No listings found for ${venue} today.`;
   }
   return output;
 };

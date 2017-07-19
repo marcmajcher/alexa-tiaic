@@ -12,11 +12,6 @@ const HELP_REPROMPT = 'Would you like me to give you listings for a specific the
 const STOP_MESSAGE = 'Good bye.';
 const LISTING_NOT_FOUND_MESSAGE = 'I don\'t know how to do that. Please ask for all listings, or listings for a specific theater.';
 const LISTING_NOT_FOUND_REPROMPT = 'Would you like me to give you listings for a specific theater, or all listings?';
-// const generatorMessages = {
-//   place: 'This place is called',
-//   region: 'This region is called',
-//   treasure: 'You found: ',
-// };
 
 const handlers = {
   LaunchRequest: function LaunchRequest() {
